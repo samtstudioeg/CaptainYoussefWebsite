@@ -1,0 +1,25 @@
+export const cvData = {
+  badge: 'Professional CV',
+  title: 'Download My',
+  titleAccent: 'Full CV.',
+  previewDetails: {
+    name: 'Elite Performance Coach',
+    title: 'Sports Performance Specialist & Certified Fitness Coach',
+    experience: '12+ Years Experience',
+    location: 'Los Angeles, CA | Available Globally',
+    email: 'coach@elitecoach.com',
+    phone: '+1 (310) 555-0192',
+  },
+  highlights: [
+    'NSCA Certified Strength & Conditioning Specialist',
+    'NASM Certified Personal Trainer',
+    'Sports Injury Rehabilitation Certified',
+    'FIBA Level 1 Basketball Coaching License',
+    'Special Needs Fitness Specialist',
+    'Sports Massage Therapy Certified',
+    'American High School PE Teaching Credential',
+    '500+ Athletes Trained Globally',
+  ],
+  downloadUrl: '/assets/documents/elitecoach-cv.pdf',
+  viewOnlineUrl: '#cv-preview',
+};
