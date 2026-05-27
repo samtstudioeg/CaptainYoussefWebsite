@@ -23,7 +23,7 @@ function AnimatedCounter({ target, suffix }: { target: number; suffix: string })
               setCount(target);
               clearInterval(timer);
             } else {
-              setCount(Math.floor(current));
+              setCount(Math.round(current));
             }
           }, 1400 / steps);
         }
@@ -50,48 +50,36 @@ export default function HeroSection() {
       className="relative w-full min-h-screen flex items-center overflow-hidden"
       style={{ backgroundColor: 'var(--background)' }}
     >
-      {/* Background portrait — full bleed, faded */}
-      <div className="absolute inset-0 z-0">
+      {/* Portrait — right background, faded */}
+      <div className="absolute inset-0 z-0 hidden lg:block">
         <AppImage
-          src={heroData.backgroundImage}
-          alt="Hero background"
+          src={heroData.portraitImage}
+          alt={heroData.portraitAlt}
           fill
           priority
-          className="object-cover object-center"
+          className="object-cover object-top opacity-20"
           sizes="100vw"
         />
+        {/* Full cover fade so text is always legible */}
         <div
           className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(to right, var(--background) 0%, rgba(8,12,20,0.85) 50%, rgba(8,12,20,0.6) 100%)',
-          }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(to top, var(--background) 0%, transparent 40%)',
-          }}
+          style={{ background: 'linear-gradient(to right, var(--background) 55%, rgba(8,12,20,0.92) 100%)' }}
         />
       </div>
 
-      {/* Noise texture */}
-      <div className="absolute inset-0 z-0 noise-overlay" />
-
-      {/* Two-column layout on large screens */}
+      {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-8 md:px-12 py-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-0">
 
           {/* ── LEFT: Badge + Headline ── */}
-          <div className="flex flex-col gap-6">
+          <div className="flex-1 flex flex-col gap-6 pb-12 lg:pb-0 lg:pr-16">
 
-            {/* Eyebrow badge */}
+            {/* Badge */}
             <div
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full w-fit"
               style={{
-                border: '1px solid rgba(0,212,255,0.25)',
-                backgroundColor: 'rgba(0,212,255,0.07)',
+                border: '1px solid rgba(0,212,255,0.2)',
+                backgroundColor: 'rgba(0,212,255,0.06)',
               }}
             >
               <span
@@ -111,13 +99,9 @@ export default function HeroSection() {
               {heroData.headline.map((line: string, i: number) => (
                 <span key={i} className="block">
                   {i === 1 ? (
-                    <span className="glow-text-blue" style={{ color: 'var(--primary)' }}>
-                      {line}
-                    </span>
+                    <span style={{ color: 'var(--primary)' }}>{line}</span>
                   ) : i === 2 ? (
-                    <span className="glow-text-green" style={{ color: 'var(--accent)' }}>
-                      {line}
-                    </span>
+                    <span style={{ color: 'var(--accent)' }}>{line}</span>
                   ) : (
                     line
                   )}
@@ -126,43 +110,43 @@ export default function HeroSection() {
             </h1>
           </div>
 
-          {/* ── RIGHT: Subheadline + CTA + Stats ── */}
-          <div className="flex flex-col gap-8">
+          {/* ── Vertical divider (large screens only) ── */}
+          <div
+            className="hidden lg:block w-px self-stretch"
+            style={{ backgroundColor: 'var(--border)', margin: '0' }}
+          />
+
+          {/* ── RIGHT: Sub + CTA + Stats ── */}
+          <div className="flex-1 flex flex-col gap-8 lg:pl-16">
 
             {/* Subheadline */}
             <p
-              className="text-base md:text-lg leading-relaxed"
+              className="text-base leading-relaxed"
               style={{ color: 'var(--muted-foreground)' }}
             >
               {heroData.subheadline}
             </p>
 
             {/* CTA */}
-            <div>
-              <a href={primaryCta.href} className="btn-primary">
-                {primaryCta.label}
-              </a>
-            </div>
+            <a href={primaryCta.href} className="btn-primary w-fit">
+              {primaryCta.label}
+            </a>
 
-            {/* Stats grid */}
+            {/* Stats 2×2 grid */}
             <div
-              className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 gap-px"
-              style={{ borderTop: '1px solid var(--border)', paddingTop: '32px' }}
+              className="grid grid-cols-2 gap-px rounded-xl overflow-hidden"
+              style={{ backgroundColor: 'var(--border)' }}
             >
               {heroData.stats.map(
-                (stat: { value: number; suffix: string; label: string }, i: number) => (
+                (stat: { value: number; suffix: string; label: string }) => (
                   <div
                     key={stat.label}
-                    className="flex flex-col gap-1"
-                    style={{
-                      paddingRight: '24px',
-                      borderLeft: i > 0 ? '1px solid var(--border)' : 'none',
-                      paddingLeft: i > 0 ? '24px' : '0',
-                    }}
+                    className="flex flex-col gap-1 p-5"
+                    style={{ backgroundColor: 'var(--card)' }}
                   >
                     <span
-                      className="block leading-none counter-value"
-                      style={{ color: 'var(--primary)' }}
+                      className="counter-value leading-none"
+                      style={{ color: 'var(--foreground)' }}
                     >
                       {mounted ? (
                         <AnimatedCounter target={stat.value} suffix={stat.suffix} />
@@ -171,7 +155,7 @@ export default function HeroSection() {
                       )}
                     </span>
                     <span
-                      className="block text-[11px] uppercase tracking-[0.1em] font-medium"
+                      className="text-[11px] uppercase tracking-[0.08em] font-medium"
                       style={{ color: 'var(--muted-foreground)' }}
                     >
                       {stat.label}
@@ -189,7 +173,7 @@ export default function HeroSection() {
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
         <a
           href="#about"
-          className="flex flex-col items-center gap-2 transition-opacity hover:opacity-100 opacity-50"
+          className="flex flex-col items-center gap-2 opacity-40 hover:opacity-80 transition-opacity"
         >
           <span
             className="text-[9px] uppercase tracking-[0.18em] font-semibold"
