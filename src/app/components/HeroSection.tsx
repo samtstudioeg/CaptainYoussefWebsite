@@ -134,40 +134,6 @@ export default function HeroSection() {
             <a href={primaryCta.href} className="btn-primary w-fit">
               {primaryCta.label}
             </a>
-
-            {/* Stats 2×2 grid */}
-            <div
-              className="grid grid-cols-2 gap-px rounded-xl overflow-hidden"
-              style={{ backgroundColor: 'var(--border)' }}
-            >
-              {heroData.stats.map(
-                (stat: { value: number; suffix: string; label: string }) => (
-                  <div
-                    key={stat.label}
-                    className="flex flex-col gap-1 p-5"
-                    style={{ backgroundColor: 'var(--card)' }}
-                  >
-                    <span
-                      className="counter-value leading-none"
-                      style={{ color: 'var(--foreground)' }}
-                    >
-                      {mounted ? (
-                        <AnimatedCounter target={stat.value} suffix={stat.suffix} />
-                      ) : (
-                        `${stat.value}${stat.suffix}`
-                      )}
-                    </span>
-                    <span
-                      className="text-[11px] uppercase tracking-[0.08em] font-medium"
-                      style={{ color: 'var(--muted-foreground)' }}
-                    >
-                      {stat.label}
-                    </span>
-                  </div>
-                )
-              )}
-            </div>
-
           </div>
         </div>
       </div>
