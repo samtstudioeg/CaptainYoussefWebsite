@@ -12,19 +12,25 @@ export default function GallerySection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
 
+  // Intersection Animation
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
+        if (entry.isIntersecting) {
+          setVisible(true);
+        }
       },
       { threshold: 0.05 }
     );
 
-    if (sectionRef.current) observer.observe(sectionRef.current);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
 
     return () => observer.disconnect();
   }, []);
 
+  // Filtered Images
   const filtered =
     activeFilter === 'All'
       ? galleryData.images
@@ -32,7 +38,7 @@ export default function GallerySection() {
           (img) => img.category === activeFilter
         );
 
-  // Prevent invalid index after filtering
+  // Reset lightbox if filter changes
   useEffect(() => {
     if (
       lightboxIdx !== null &&
@@ -42,7 +48,7 @@ export default function GallerySection() {
     }
   }, [filtered.length, lightboxIdx]);
 
-  // Keyboard navigation
+  // Keyboard Navigation
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (lightboxIdx === null) return;
@@ -54,7 +60,7 @@ export default function GallerySection() {
       if (e.key === 'ArrowRight') {
         setLightboxIdx((prev) =>
           prev !== null
-            ? Math.min(prev + 1, filtered.length - 1)
+            ? (prev + 1) % filtered.length
             : null
         );
       }
@@ -62,7 +68,8 @@ export default function GallerySection() {
       if (e.key === 'ArrowLeft') {
         setLightboxIdx((prev) =>
           prev !== null
-            ? Math.max(prev - 1, 0)
+            ? (prev - 1 + filtered.length) %
+              filtered.length
             : null
         );
       }
@@ -71,9 +78,13 @@ export default function GallerySection() {
     window.addEventListener('keydown', handleKey);
 
     return () =>
-      window.removeEventListener('keydown', handleKey);
+      window.removeEventListener(
+        'keydown',
+        handleKey
+      );
   }, [lightboxIdx, filtered.length]);
 
+  // Responsive Grid Span Classes
   const spanClasses: Record<string, string> = {
     '2c2r': 'sm:col-span-2 sm:row-span-2',
     '2c1r': 'sm:col-span-2',
@@ -107,7 +118,7 @@ export default function GallerySection() {
           </h2>
         </div>
 
-        {/* Filter Tabs */}
+        {/* Filter Buttons */}
         <div className="flex flex-wrap gap-2 justify-center mb-8 md:mb-10">
           {galleryData.categories.map((cat) => (
             <button
@@ -124,7 +135,7 @@ export default function GallerySection() {
           ))}
         </div>
 
-        {/* Responsive Grid */}
+        {/* Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[220px] gap-4">
           {filtered.map((img, i) => (
             <button
@@ -141,9 +152,11 @@ export default function GallerySection() {
                 alt={img.alt}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
-                sizes="(max-width: 640px) 100vw,
-                       (max-width: 1024px) 50vw,
-                       25vw"
+                sizes="
+                  (max-width: 640px) 100vw,
+                  (max-width: 1024px) 50vw,
+                  25vw
+                "
               />
 
               {/* Overlay */}
@@ -172,82 +185,97 @@ export default function GallerySection() {
       </div>
 
       {/* Lightbox */}
-      {lightboxIdx !== null && filtered[lightboxIdx] && (
-        <div
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
-          onClick={() => setLightboxIdx(null)}
-        >
+      {lightboxIdx !== null &&
+        filtered[lightboxIdx] && (
           <div
-            className="relative w-full max-w-6xl"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+            onClick={() => setLightboxIdx(null)}
           >
-            <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[75vh] rounded-2xl overflow-hidden">
-              <AppImage
-                src={filtered[lightboxIdx].src}
-                alt={filtered[lightboxIdx].alt}
-                fill
-                priority
-                className="object-contain"
-                sizes="100vw"
-              />
-            </div>
-
-            {/* Controls */}
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-2 items-center justify-between mt-4">
-              <button
-                onClick={() =>
-                  setLightboxIdx((p) =>
-                    p !== null
-                      ? Math.max(p - 1, 0)
-                      : null
-                  )
-                }
-                disabled={lightboxIdx === 0}
-                className="btn-outline text-xs px-4 py-2 disabled:opacity-30"
-              >
-                ← Prev
-              </button>
-
-              <p className="text-center text-xs sm:text-sm text-white/70 px-2">
-                {filtered[lightboxIdx].caption} ·{' '}
-                {lightboxIdx + 1}/{filtered.length}
-              </p>
-
-              <button
-                onClick={() =>
-                  setLightboxIdx((p) =>
-                    p !== null
-                      ? Math.min(
-                          p + 1,
-                          filtered.length - 1
-                        )
-                      : null
-                  )
-                }
-                disabled={
-                  lightboxIdx === filtered.length - 1
-                }
-                className="btn-outline text-xs px-4 py-2 disabled:opacity-30"
-              >
-                Next →
-              </button>
-            </div>
-
-            {/* Close */}
-            <button
-              onClick={() => setLightboxIdx(null)}
-              aria-label="Close lightbox"
-              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+            <div
+              className="relative w-full max-w-6xl"
+              onClick={(e) =>
+                e.stopPropagation()
+              }
             >
-              <Icon
-                name="XMarkIcon"
-                size={20}
-                className="text-white"
-              />
-            </button>
+              {/* Image */}
+              <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[75vh] rounded-2xl overflow-hidden">
+                <AppImage
+                  src={filtered[lightboxIdx].src}
+                  alt={filtered[lightboxIdx].alt}
+                  fill
+                  priority
+                  className="object-contain"
+                  sizes="100vw"
+                />
+              </div>
+
+              {/* Controls */}
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-2 items-center justify-between mt-4">
+                {/* Prev */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+
+                    setLightboxIdx((prev) =>
+                      prev !== null
+                        ? (prev -
+                            1 +
+                            filtered.length) %
+                          filtered.length
+                        : null
+                    );
+                  }}
+                  className="btn-outline text-xs px-4 py-2"
+                >
+                  ← Prev
+                </button>
+
+                {/* Counter */}
+                <p className="text-center text-xs sm:text-sm text-white/70 px-2">
+                  {
+                    filtered[lightboxIdx]
+                      .caption
+                  }{' '}
+                  · {lightboxIdx + 1}/
+                  {filtered.length}
+                </p>
+
+                {/* Next */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+
+                    setLightboxIdx((prev) =>
+                      prev !== null
+                        ? (prev + 1) %
+                          filtered.length
+                        : null
+                    );
+                  }}
+                  className="btn-outline text-xs px-4 py-2"
+                >
+                  Next →
+                </button>
+              </div>
+
+              {/* Close */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLightboxIdx(null);
+                }}
+                aria-label="Close lightbox"
+                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+              >
+                <Icon
+                  name="XMarkIcon"
+                  size={20}
+                  className="text-white"
+                />
+              </button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
     </section>
   );
 }
