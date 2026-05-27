@@ -41,15 +41,15 @@ export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  // Use only the primary CTA
   const primaryCta = heroData.ctas.find((c: { variant: string }) => c.variant === 'primary') ?? heroData.ctas[0];
 
   return (
     <section
       id="hero"
-      className="relative w-full min-h-screen flex items-center overflow-hidden bg-[#0c0c0c]"
+      className="relative w-full min-h-screen flex items-center overflow-hidden"
+      style={{ backgroundColor: 'var(--background)' }}
     >
-      {/* Portrait image — right half */}
+      {/* Portrait — right half */}
       <div className="absolute inset-y-0 right-0 w-1/2 z-0">
         <AppImage
           src={heroData.portraitImage}
@@ -59,78 +59,141 @@ export default function HeroSection() {
           className="object-cover object-top"
           sizes="50vw"
         />
-        {/* Fade left edge into background */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0c0c0c] via-[#0c0c0c]/60 to-transparent" />
+        {/* Fade left into background */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(to right, var(--background) 0%, rgba(8,12,20,0.55) 55%, transparent 100%)',
+          }}
+        />
+        {/* Subtle primary glow behind subject */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              'radial-gradient(ellipse 60% 60% at 70% 40%, rgba(0,212,255,0.07) 0%, transparent 70%)',
+          }}
+        />
       </div>
 
-      {/* Warm glow behind image */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-1/3 right-1/3 w-[480px] h-[480px] rounded-full bg-orange-600/10 blur-[140px]" />
-      </div>
+      {/* Noise texture */}
+      <div className="absolute inset-0 z-0 noise-overlay" />
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-8 md:px-12 py-32">
         <div className="max-w-lg">
 
-          {/* Eyebrow */}
-          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-orange-400/90 mb-5">
-            {heroData.badge}
-          </p>
+          {/* Eyebrow badge */}
+          <div
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+            style={{
+              border: '1px solid rgba(0,212,255,0.25)',
+              backgroundColor: 'rgba(0,212,255,0.07)',
+            }}
+          >
+            <span
+              className="w-1.5 h-1.5 rounded-full animate-pulse"
+              style={{ backgroundColor: 'var(--accent)' }}
+            />
+            <span
+              className="text-[11px] font-bold uppercase tracking-[0.12em]"
+              style={{ color: 'var(--primary)' }}
+            >
+              {heroData.badge}
+            </span>
+          </div>
 
           {/* Headline */}
-          <h1
-            className="leading-[0.9] text-white mb-6"
-            style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 'clamp(64px, 9vw, 96px)' }}
-          >
-            {heroData.headline.map((line: string, i: number) =>
-              i === heroData.headline.length - 1 ? (
-                <span key={i} className="block text-orange-500">{line}</span>
-              ) : (
-                <span key={i} className="block">{line}</span>
-              )
-            )}
+          <h1 className="text-hero-xl mb-6" style={{ color: 'var(--foreground)' }}>
+            {heroData.headline.map((line: string, i: number) => (
+              <span key={i} className="block">
+                {i === 1 ? (
+                  <span className="glow-text-blue" style={{ color: 'var(--primary)' }}>
+                    {line}
+                  </span>
+                ) : i === 2 ? (
+                  <span className="glow-text-green" style={{ color: 'var(--accent)' }}>
+                    {line}
+                  </span>
+                ) : (
+                  line
+                )}
+              </span>
+            ))}
           </h1>
 
-          {/* Subheadline — short */}
-          <p className="text-base leading-relaxed text-white/50 mb-9 max-w-sm">
+          {/* Subheadline */}
+          <p
+            className="text-base leading-relaxed mb-9 max-w-sm"
+            style={{ color: 'var(--muted-foreground)' }}
+          >
             {heroData.subheadline}
           </p>
 
-          {/* Single CTA */}
-          <a
-            href={primaryCta.href}
-            className="inline-block px-8 py-3.5 rounded-lg bg-orange-500 text-white text-sm font-bold tracking-wide transition-all hover:opacity-90 hover:-translate-y-0.5 active:scale-95"
-          >
+          {/* Single primary CTA */}
+          <a href={primaryCta.href} className="btn-primary">
             {primaryCta.label}
           </a>
 
           {/* Stats row */}
-          <div className="flex mt-12 pt-8 border-t border-white/[0.07]">
-            {heroData.stats.map((stat: { value: number; suffix: string; label: string }, i: number) => (
-              <div
-                key={stat.label}
-                className={`flex-1 ${i > 0 ? 'pl-6 border-l border-white/[0.07]' : ''} ${i < heroData.stats.length - 1 ? 'pr-6' : ''}`}
-              >
-                <span
-                  className="block text-white leading-none"
-                  style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '36px' }}
+          <div
+            className="flex mt-12 pt-8"
+            style={{ borderTop: '1px solid var(--border)' }}
+          >
+            {heroData.stats.map(
+              (stat: { value: number; suffix: string; label: string }, i: number) => (
+                <div
+                  key={stat.label}
+                  className="flex-1"
+                  style={{
+                    paddingRight: i < heroData.stats.length - 1 ? '24px' : '0',
+                    paddingLeft: i > 0 ? '24px' : '0',
+                    borderLeft: i > 0 ? '1px solid var(--border)' : 'none',
+                  }}
                 >
-                  {mounted
-                    ? <AnimatedCounter target={stat.value} suffix={stat.suffix} />
-                    : `${stat.value}${stat.suffix}`}
-                </span>
-                <span className="block text-[11px] text-white/35 uppercase tracking-[0.1em] font-medium mt-1">
-                  {stat.label}
-                </span>
-              </div>
-            ))}
+                  <span
+                    className="block leading-none counter-value"
+                    style={{ color: 'var(--primary)' }}
+                  >
+                    {mounted ? (
+                      <AnimatedCounter target={stat.value} suffix={stat.suffix} />
+                    ) : (
+                      `${stat.value}${stat.suffix}`
+                    )}
+                  </span>
+                  <span
+                    className="block text-[11px] uppercase tracking-[0.1em] font-medium mt-1.5"
+                    style={{ color: 'var(--muted-foreground)' }}
+                  >
+                    {stat.label}
+                  </span>
+                </div>
+              )
+            )}
           </div>
 
         </div>
       </div>
 
-      {/* Bebas Neue font */}
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');`}</style>
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+        <a
+          href="#about"
+          className="flex flex-col items-center gap-2 transition-opacity hover:opacity-100 opacity-50"
+        >
+          <span
+            className="text-[9px] uppercase tracking-[0.18em] font-semibold"
+            style={{ color: 'var(--muted-foreground)' }}
+          >
+            Scroll
+          </span>
+          <div
+            className="w-px h-8"
+            style={{ background: 'linear-gradient(to bottom, var(--primary), transparent)' }}
+          />
+        </a>
+      </div>
     </section>
   );
 }
