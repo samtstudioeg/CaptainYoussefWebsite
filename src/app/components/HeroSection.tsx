@@ -50,20 +50,23 @@ export default function HeroSection() {
       className="relative w-full min-h-screen flex items-center overflow-hidden"
       style={{ backgroundColor: 'var(--background)' }}
     >
-      {/* Portrait — right background, faded */}
-      <div className="absolute inset-0 z-0 hidden lg:block">
+      {/* Background image — full bleed, faded for legibility */}
+      <div className="absolute inset-0 z-0">
         <AppImage
-          src={heroData.portraitImage}
-          alt={heroData.portraitAlt}
+          src={heroData.backgroundImage}
+          alt="Hero background"
           fill
           priority
-          className="object-cover object-top opacity-20"
+          className="object-cover object-center"
           sizes="100vw"
         />
-        {/* Full cover fade so text is always legible */}
         <div
           className="absolute inset-0"
-          style={{ background: 'linear-gradient(to right, var(--background) 55%, rgba(8,12,20,0.92) 100%)' }}
+          style={{ background: 'linear-gradient(to right, var(--background) 45%, rgba(8,12,20,0.88) 75%, rgba(8,12,20,0.75) 100%)' }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(to top, var(--background) 0%, transparent 35%)' }}
         />
       </div>
 
