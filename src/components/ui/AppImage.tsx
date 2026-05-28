@@ -57,21 +57,16 @@ const AppImage = memo(function AppImage({
     const [imageSrc, setImageSrc] =
         useState(src);
 
-    const [isLoading, setIsLoading] =
-        useState(true);
-
     const [hasError, setHasError] =
         useState(false);
 
     // =========================
-    // FIX:
     // Update image when src changes
     // =========================
 
     useEffect(() => {
         setImageSrc(src);
         setHasError(false);
-        setIsLoading(true);
     }, [src]);
 
     // =========================
@@ -100,17 +95,11 @@ const AppImage = memo(function AppImage({
             setImageSrc(fallbackSrc);
             setHasError(true);
         }
-
-        setIsLoading(false);
     }, [
         hasError,
         imageSrc,
         fallbackSrc,
     ]);
-
-    const handleLoad = useCallback(() => {
-        setIsLoading(false);
-    }, []);
 
     // =========================
     // Classes
@@ -118,12 +107,6 @@ const AppImage = memo(function AppImage({
 
     const imageClassName = useMemo(() => {
         const classes = [className];
-
-        if (isLoading) {
-            classes.push(
-                'bg-gray-200 animate-pulse'
-            );
-        }
 
         if (onClick) {
             classes.push(
@@ -136,7 +119,6 @@ const AppImage = memo(function AppImage({
             .join(' ');
     }, [
         className,
-        isLoading,
         onClick,
     ]);
 
@@ -154,7 +136,6 @@ const AppImage = memo(function AppImage({
             unoptimized:
                 resolvedUnoptimized,
             onError: handleError,
-            onLoad: handleLoad,
             onClick,
         };
 
@@ -184,7 +165,6 @@ const AppImage = memo(function AppImage({
         priority,
         loading,
         handleError,
-        handleLoad,
         onClick,
     ]);
 
@@ -194,9 +174,7 @@ const AppImage = memo(function AppImage({
 
     if (fill) {
         return (
-            <div
-                className="relative w-full h-full"
-            >
+            <div className="relative w-full h-full">
                 <Image
                     {...imageProps}
                     fill
