@@ -1,13 +1,6 @@
 'use client';
 
-import React, {
-    useState,
-    useCallback,
-    useMemo,
-    useEffect,
-    memo,
-} from 'react';
-
+import React, { useState, useCallback, useMemo, memo } from 'react';
 import Image from 'next/image';
 
 interface AppImageProps {
@@ -26,7 +19,6 @@ interface AppImageProps {
     fallbackSrc?: string;
     loading?: 'lazy' | 'eager';
     unoptimized?: boolean;
-    objectFit?: 'cover' | 'contain';
     [key: string]: any;
 }
 
@@ -46,85 +38,34 @@ const AppImage = memo(function AppImage({
     fallbackSrc = '/assets/images/no_image.png',
     loading = 'lazy',
     unoptimized = false,
-    objectFit = 'cover',
     ...props
 }: AppImageProps) {
+    const [imageSrc, setImageSrc] = useState(src);
+    const [isLoading, setIsLoading] = useState(true);
+    const [hasError, setHasError] = useState(false);
 
-    // =========================
-    // States
-    // =========================
-
-    const [imageSrc, setImageSrc] =
-        useState(src);
-
-    const [hasError, setHasError] =
-        useState(false);
-
-    // =========================
-    // Update image when src changes
-    // =========================
-
-    useEffect(() => {
-        setImageSrc(src);
-        setHasError(false);
-    }, [src]);
-
-    // =========================
-    // External URLs
-    // =========================
-
-    const isExternalUrl = useMemo(
-        () =>
-            typeof imageSrc === 'string' &&
-            imageSrc.startsWith('http'),
-        [imageSrc]
-    );
-
-    const resolvedUnoptimized =
-        unoptimized || isExternalUrl;
-
-    // =========================
-    // Error Handling
-    // =========================
+    const isExternalUrl = useMemo(() => typeof imageSrc === 'string' && imageSrc.startsWith('http'), [imageSrc]);
+    const resolvedUnoptimized = unoptimized || isExternalUrl;
 
     const handleError = useCallback(() => {
-        if (
-            !hasError &&
-            imageSrc !== fallbackSrc
-        ) {
+        if (!hasError && imageSrc !== fallbackSrc) {
             setImageSrc(fallbackSrc);
             setHasError(true);
         }
-    }, [
-        hasError,
-        imageSrc,
-        fallbackSrc,
-    ]);
+        setIsLoading(false);
+    }, [hasError, imageSrc, fallbackSrc]);
 
-    // =========================
-    // Classes
-    // =========================
+    const handleLoad = useCallback(() => {
+        setIsLoading(false);
+        setHasError(false);
+    }, []);
 
     const imageClassName = useMemo(() => {
         const classes = [className];
-
-        if (onClick) {
-            classes.push(
-                'cursor-pointer hover:opacity-90 transition-opacity duration-200'
-            );
-        }
-
-        return classes
-            .filter(Boolean)
-            .join(' ');
-    }, [
-        className,
-        onClick,
-    ]);
-
-    // =========================
-    // Shared Props
-    // =========================
+        if (isLoading) classes.push('bg-gray-200');
+        if (onClick) classes.push('cursor-pointer hover:opacity-90 transition-opacity duration-200');
+        return classes.filter(Boolean).join(' ');
+    }, [className, isLoading, onClick]);
 
     const imageProps = useMemo(() => {
         const baseProps: any = {
@@ -133,9 +74,9 @@ const AppImage = memo(function AppImage({
             className: imageClassName,
             quality,
             placeholder,
-            unoptimized:
-                resolvedUnoptimized,
+            unoptimized: resolvedUnoptimized,
             onError: handleError,
+            onLoad: handleLoad,
             onClick,
         };
 
@@ -145,55 +86,26 @@ const AppImage = memo(function AppImage({
             baseProps.loading = loading;
         }
 
-        if (
-            blurDataURL &&
-            placeholder === 'blur'
-        ) {
-            baseProps.blurDataURL =
-                blurDataURL;
+        if (blurDataURL && placeholder === 'blur') {
+            baseProps.blurDataURL = blurDataURL;
         }
 
         return baseProps;
-    }, [
-        imageSrc,
-        alt,
-        imageClassName,
-        quality,
-        placeholder,
-        blurDataURL,
-        resolvedUnoptimized,
-        priority,
-        loading,
-        handleError,
-        onClick,
-    ]);
-
-    // =========================
-    // Fill Image
-    // =========================
+    }, [imageSrc, alt, imageClassName, quality, placeholder, blurDataURL, resolvedUnoptimized, priority, loading, handleError, handleLoad, onClick]);
 
     if (fill) {
         return (
-            <div className="relative w-full h-full">
+            <div className="relative" style={{ width: '100%', height: '100%' }}>
                 <Image
                     {...imageProps}
                     fill
-                    sizes={
-                        sizes ||
-                        '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-                    }
-                    style={{
-                        objectFit,
-                    }}
+                    sizes={sizes || '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'}
+                    style={{ objectFit: 'cover' }}
                     {...props}
                 />
             </div>
         );
     }
-
-    // =========================
-    // Standard Image
-    // =========================
 
     return (
         <Image
@@ -201,9 +113,6 @@ const AppImage = memo(function AppImage({
             width={width || 400}
             height={height || 300}
             sizes={sizes}
-            style={{
-                objectFit,
-            }}
             {...props}
         />
     );

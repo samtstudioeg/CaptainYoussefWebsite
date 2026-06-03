@@ -19,6 +19,15 @@ export const metadata: Metadata = {
   description: 'Elite fitness trainer specializing in sports performance, injury rehabilitation, basketball coaching, special needs fitness, and athlete conditioning. Book your consultation today.',
 };
 
+function AnimatedDivider() {
+  return (
+    <div className="relative mx-6 h-px overflow-hidden">
+      <div className="absolute inset-0 section-divider" />
+      <div className="absolute inset-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent animate-shimmer-line" />
+    </div>
+  );
+}
+
 export default function HomePage() {
   return (
     <main className="relative bg-background text-foreground overflow-x-hidden">
@@ -28,50 +37,42 @@ export default function HomePage() {
       {/* Hero */}
       <HeroSection />
 
-      {/* Divider */}
-      <div className="section-divider mx-6" />
+      <AnimatedDivider />
 
       {/* About */}
       <AboutSection />
 
-      {/* Divider */}
-      <div className="section-divider mx-6" />
+      <AnimatedDivider />
 
       {/* Services */}
       <ServicesSection />
 
-      {/* Divider */}
-      <div className="section-divider mx-6" />
+      <AnimatedDivider />
 
       {/* Experience Timeline */}
       <ExperienceSection />
 
-      {/* Divider */}
-      <div className="section-divider mx-6" />
+      <AnimatedDivider />
 
       {/* Gallery */}
       <GallerySection />
 
-      {/* Divider */}
-      <div className="section-divider mx-6" />
+      <AnimatedDivider />
 
       {/* Video Showcase */}
       <VideoSection />
 
-      {/* Divider */}
-      <div className="section-divider mx-6" />
+      <AnimatedDivider />
 
       {/* Testimonials */}
       <TestimonialsSection />
 
-      {/* Divider */}
-      <div className="section-divider mx-6" />
+      <AnimatedDivider />
 
       {/* Download CV */}
       <CVSection />
 
-      {/* Divider */}
-      <div className="section-divider mx-6" />
+      <AnimatedDivider />
 
       {/* Contact */}
       <ContactSection />
