@@ -26,6 +26,6 @@ export const aboutData = {
   'Sports Massage Therapy Certification',
   'American High School PE Teacher Credential'],
 
-  image: "https://img.rocket.new/generatedImages/rocket_gen_img_102b71479-1767408165530.png",
+  image: "/assets/images/about1.jfif",
   imageAlt: 'Athletic trainer reviewing performance data on tablet in a well-equipped professional gym, cool-toned lighting'
 };
