@@ -34,7 +34,7 @@ export const experienceData = {
     },
 
     {
-      year: '2021–2024',
+      year: '2020–2024',
       role: 'Physical Education Teacher',
       organization: 'Continental Palace School (CPS)',
       type: 'education',
@@ -76,7 +76,7 @@ export const experienceData = {
     },
 
     {
-      year: '2020–Present',
+      year: '2019–Present',
       role: 'Sports Rehabilitation Specialist',
       organization: 'Private Practice',
       type: 'rehabilitation',
