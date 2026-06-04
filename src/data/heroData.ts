@@ -13,7 +13,7 @@ export const heroData = {
   { value: 95, suffix: '%', label: 'Recovery Rate' },
   { value: 30, suffix: '+', label: 'Championships' }],
 
-  backgroundImage: "https://img.rocket.new/generatedImages/rocket_gen_img_184d0d3ba-1772138383057.png",
+  backgroundImage: "/assets/images/hero.jfif",
   portraitImage: "https://img.rocket.new/generatedImages/rocket_gen_img_184d0d3ba-1772138383057.png",
   portraitAlt: 'Elite fitness trainer in professional athletic gear, confident pose in modern gym environment'
 };
