@@ -1,57 +1,137 @@
 export const experienceData = {
   badge: 'Professional Journey',
   title: 'Experience That',
-  titleAccent: 'Speaks Results.',
+  titleAccent: 'Builds Athletes.',
+
   timeline: [
-    {
-      year: '2024–Present',
-      role: 'Head Strength & Conditioning Coach',
-      organization: 'Westfield Sports Academy, Los Angeles, CA',
-      type: 'coaching',
-      description: 'Leading performance programs for 80+ student athletes across basketball, track, and soccer programs. Implemented data-driven load management reducing injury rate by 34%.',
-      highlights: ['80+ athletes under program', '34% injury rate reduction', 'NSCA award nominee 2025'],
-    },
-    {
-      year: '2022–2024',
-      role: 'Sports Rehabilitation Specialist',
-      organization: 'Pacific Performance & Rehab Center, San Diego, CA',
-      type: 'rehabilitation',
-      description: 'Delivered post-surgical and sports injury rehabilitation programs with a 95% return-to-sport success rate across 120+ clients annually.',
-      highlights: ['120+ clients per year', '95% return-to-sport rate', 'ACL specialist designation'],
-    },
-    {
-      year: '2020–2022',
-      role: 'Head Basketball Coach & PE Teacher',
-      organization: 'Lincoln High School, Phoenix, AZ',
+  {
+    year: '2026–Present',
+    role: 'American High School Physical Education Teacher',
+    organization: 'Westview International Language School',
+    type: 'education',
+    description:
+      'Teaching Physical Education within the American High School program, promoting student wellness, physical literacy, athletic development, teamwork, and lifelong fitness habits through engaging and standards-based instruction.',
+    highlights: [
+      'American High School Program',
+      'Physical Education Curriculum',
+      'Student Wellness & Fitness',
+      'Athletic Development',
+    ],
+  },
+
+  {
+    year: '2024–2026',
+      role: 'Physical Education Teacher',
+      organization: 'Capital International School (CIS)',
       type: 'education',
-      description: 'Led varsity basketball program to two consecutive state playoff appearances while teaching standards-aligned PE curriculum to 300+ students.',
-      highlights: ['2× State Playoff appearances', '300+ students taught annually', 'Coach of the Year 2021'],
+      description:
+        'Teaching Physical Education while supporting student development through modern sports training methodologies, athletic activities, and fitness programs.',
+      highlights: [
+        'International school environment',
+        'Student athletic development',
+        'Physical education curriculum delivery',
+      ],
     },
+
     {
-      year: '2018–2020',
-      role: 'Special Needs Fitness Coordinator',
-      organization: 'Ability Forward Foundation, Denver, CO',
-      type: 'specialneeds',
-      description: 'Designed and delivered adaptive fitness programs for 60+ individuals with developmental and physical disabilities, partnering with occupational therapists.',
-      highlights: ['60+ adaptive clients', 'OT partnership model', 'Program published in JOPERD'],
+      year: '2021–2024',
+      role: 'Physical Education Teacher',
+      organization: 'Continental Palace School (CPS)',
+      type: 'education',
+      description:
+        'Delivered Physical Education programs and sports activities while helping students improve physical fitness, teamwork, and athletic performance.',
+      highlights: [
+        '3 years of teaching experience',
+        'Student fitness development',
+        'School sports activities',
+      ],
     },
+
     {
-      year: '2016–2018',
-      role: 'Personal Trainer & Sports Massage Therapist',
-      organization: 'Elite Performance Studio, Chicago, IL',
-      type: 'training',
-      description: 'Built private clientele of professional athletes and executives, delivering combined performance training and massage therapy protocols.',
-      highlights: ['50+ private clients', 'Corporate wellness partnerships', '4.9★ client rating'],
-    },
-    {
-      year: '2014–2016',
-      role: 'Assistant Strength Coach',
-      organization: 'Midwest Athletic Development Center, Chicago, IL',
+      year: '2020–Present',
+      role: 'Basketball Coach',
+      organization: 'Mena Garden City Club',
       type: 'coaching',
-      description: 'Supported head coaching staff in program delivery for semi-professional basketball and football teams during pre-season conditioning camps.',
-      highlights: ['Semi-pro team conditioning', '3 championship camps', 'CSCS certification earned'],
+      description:
+        'Coaching youth basketball teams, focusing on skill development, game intelligence, teamwork, and competitive performance.',
+      highlights: [
+        'Girls Team 2012 Coach',
+        'Girls Team 2013 Coach',
+        'Youth player development',
+      ],
+    },
+
+    {
+      year: '2020–Present',
+      role: 'Basketball Academy Coach',
+      organization: 'Schools & Sports Academies',
+      type: 'coaching',
+      description:
+        'Providing basketball coaching programs across schools and academies, helping young athletes improve technical and tactical performance.',
+      highlights: [
+        'Al Ahram Modern School (AMS)',
+        'Egypt International School',
+        'Capital Language School',
+      ],
+    },
+
+    {
+      year: '2020–Present',
+      role: 'Sports Rehabilitation Specialist',
+      organization: 'Private Practice',
+      type: 'rehabilitation',
+      description:
+        'Supporting athletes through injury prevention, rehabilitation protocols, recovery programs, and return-to-sport preparation.',
+      highlights: [
+        'Sports injury rehabilitation',
+        'Performance recovery programs',
+        'Injury prevention strategies',
+      ],
+    },
+
+    {
+      year: '2019–Present',
+      role: 'Athletic Coach & Sports Massage Therapist',
+      organization: 'ProFit Gym',
+      type: 'training',
+      description:
+        'Delivering athletic performance training, strength and conditioning programs, and sports massage therapy for athletes and active individuals.',
+      highlights: [
+        'Athletic performance coaching',
+        'Strength & conditioning',
+        'Sports massage therapy',
+      ],
+    },
+
+    {
+      year: '2018–2022',
+      role: 'Special Needs Teacher',
+      organization: 'Al Ahram Gardens Club',
+      type: 'specialneeds',
+      description:
+        'Worked with children and young adults with special needs, using physical activity and sports to enhance confidence, movement, and social engagement.',
+      highlights: [
+        '4 years of experience',
+        'Adaptive physical education',
+        'Inclusive sports programs',
+      ],
+    },
+
+    {
+      year: 'Player Career',
+      role: 'Basketball Player',
+      organization: 'Al Tadamun Club, Kuwait',
+      type: 'coaching',
+      description:
+        'Competitive basketball player in Kuwait, gaining valuable experience that later shaped a coaching philosophy focused on discipline, development, and performance.',
+      highlights: [
+        'Competitive basketball experience',
+        'Player development foundation',
+        'International sports exposure',
+      ],
     },
   ],
+
   typeColors: {
     coaching: 'primary',
     rehabilitation: 'accent',
@@ -59,4 +139,4 @@ export const experienceData = {
     specialneeds: 'accent',
     training: 'primary',
   },
-};  
+};
