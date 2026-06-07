@@ -18,7 +18,7 @@ export const aboutData = {
     { value: 8, suffix: '+', label: 'Years Coaching Experience', icon: 'AcademicCapIcon' },
     { value: 6, suffix: '+', label: 'Schools & Academies', icon: 'BuildingOfficeIcon' },
     { value: 4, suffix: '+', label: 'Years Special Needs Education', icon: 'HeartIcon' },
-    { value: 100, suffix: '+', label: 'Athletes Developed', icon: 'UserGroupIcon' }
+    { value: 2000, suffix: '+', label: 'Athletes Developed', icon: 'UserGroupIcon' }
   ],
 
   certifications: [
