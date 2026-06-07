@@ -22,14 +22,11 @@ export const aboutData = {
   ],
 
   certifications: [
-    'Bachelor of Physical Education — Helwan University',
-    'Sports Rehabilitation & Injury Prevention Specialist',
-    'Sports Massage Certification — INSEP ISS Sports Sciences Institute',
-    'Modern Training Methods for Cerebral Palsy Athletes',
-    'Sports Injuries Course — Olympic Academy for Sports Leaders',
-    'Basketball Fundamentals Course — Olympic Academy for Sports Leaders',
-    'Sports Load Planning Workshop',
-    'Basketball Coaching & Youth Athlete Development'
+        'Cerebral Palsy Training– Egyptian Federation Ministry of Youth and Sports (2021)',
+        'Sports Load Planning Workshop– Faculty of Physical Education (2020)',
+        'Sports Massage Certification– ISS INSEP Institute (2019)',
+        'Sports Injury Course– Olympic Academy of Sports Leaders',
+        'Basketball Fundamentals Course– Olympic Academy of Sports Leaders'
   ],
 
   image: '/assets/images/about1.jfif',
