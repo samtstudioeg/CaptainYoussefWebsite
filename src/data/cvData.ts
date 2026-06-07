@@ -25,6 +25,6 @@ export const cvData = {
     'Experience Coaching Basketball Academies and School Teams',
   ],
 
-  downloadUrl: '/yousefmohamed-PE-cv.pdf',
-  viewOnlineUrl: '/yousefmohamed-PE-cv.pdf',
+  downloadUrl: '/yousefmohamed_PE_CV.pdf',
+  viewOnlineUrl: '/yousefmohamed_PE_CV.pdf',
 };
