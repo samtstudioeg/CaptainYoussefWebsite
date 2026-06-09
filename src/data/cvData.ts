@@ -9,7 +9,7 @@ export const cvData = {
     experience: '8+ Years of Coaching & Education Experience',
     location: 'Giza, Egypt',
     email: 'je4yousef@gmail.com',
-    phone: '+20 102 430 8748',
+    phone: '+201116778420',
   },
 
   highlights: [
