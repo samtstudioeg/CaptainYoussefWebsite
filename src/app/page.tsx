@@ -60,7 +60,7 @@ export default function HomePage() {
       <AnimatedDivider />
 
       {/* Video Showcase */}
-      <VideoSection />
+      {/* <VideoSection /> */}
 
       <AnimatedDivider />
 
