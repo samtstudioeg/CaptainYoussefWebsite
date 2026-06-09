@@ -8,7 +8,7 @@ export const cvData = {
     title: 'Basketball Coach, Physical Education Teacher & Sports Rehabilitation Specialist',
     experience: '8+ Years of Coaching & Education Experience',
     location: 'Giza, Egypt',
-    email: 'je4yousef@gmail.com',
+    email: 'yousef4je@gmail.com',
     phone: '+201116778420',
   },
 
