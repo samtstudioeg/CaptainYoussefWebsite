@@ -187,7 +187,7 @@ export default function HeroSection() {
           transition: 'opacity 0.7s ease 1100ms, transform 0.7s cubic-bezier(0.22,1,0.36,1) 1100ms',
         }}
       >
-        <p className="text-3xl font-800 text-primary leading-none">12+</p>
+        <p className="text-3xl font-800 text-primary leading-none">8+</p>
         <p className="text-[11px] text-muted-foreground font-600 uppercase tracking-widest mt-1">
           Years Elite<br />Coaching
         </p>
