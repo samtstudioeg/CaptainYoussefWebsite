@@ -4,7 +4,7 @@ export const aboutData = {
   titleAccent: 'Building Champions.',
 
  bio: [
-    'I am Yousef Mohamed, a Kuwait-born Physical Education Teacher, Basketball Coach, Athletic Coach, and Sports Rehabilitation Specialist. Holding a Bachelor\'s Degree in Physical Education from Helwan University, I am dedicated to helping athletes and students reach their full potential through modern coaching, performance training, and rehabilitation practices.',
+    'I am Yousef Mohamed. Born and raised in Kuwait, I am a Physical Education Teacher, Basketball Coach, Athletic Coach, and Sports Rehabilitation Specialist. Holding a Bachelor\'s Degree in Physical Education from Helwan University, I am dedicated to helping athletes and students reach their full potential through modern coaching, performance training, and rehabilitation practices.',
 
     'My experience spans international schools, sports academies, basketball programs, special needs education, athletic performance training, sports massage therapy, and injury rehabilitation. Having played competitive basketball in Kuwait and coached multiple youth teams, I combine practical playing experience with professional coaching expertise to help athletes perform at their highest level.'
   ],
