@@ -85,7 +85,14 @@ export default function Footer() {
 
         {/* Developer Credit */}
         <p className="text-center text-xs text-muted-foreground mt-6 opacity-60">
-          {footerData.credit}
+          <a
+            href="https://hassananwarstudio.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-primary transition-colors duration-200 underline-offset-2 hover:underline"
+          >
+            {footerData.credit}
+          </a>
         </p>
       </div>
     </footer>
