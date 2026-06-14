@@ -25,14 +25,14 @@ export const contactData = {
   ],
   social: [
     { platform: 'Instagram', handle: '@elitecoach', href: 'https://instagram.com/yousefdx12/', icon: 'instagram' },
-    { platform: 'LinkedIn', handle: 'EliteCoach', href: 'https://eur05.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fyousef-mohamed-362145379', icon: 'linkedin' },
+    { platform: 'LinkedIn', handle: 'EliteCoach', href: 'https://www.linkedin.com/in/yousef-mohamed-362145379', icon: 'linkedin' },
     { platform: 'YouTube', handle: 'EliteCoach TV', href: '#', icon: 'youtube' },
     { platform: 'Twitter/X', handle: '@elitecoach', href: '#', icon: 'twitter' },
   ],
   whatsapp: {
-    number: '+201116778420',
+    number: '201116778420',
     message: 'Hi! I\'d like to book a consultation with EliteCoach.',
-    href: 'https://wa.me/+201116778420?text=Hi!%20I%27d%20like%20to%20book%20a%20consultation%20with%20EliteCoach.',
+    href: 'https://wa.me/201116778420?text=Hi!%20I%27d%20like%20to%20book%20a%20consultation%20with%20EliteCoach.',
   },
   formFields: [
     { name: 'name', label: 'Full Name', type: 'text', placeholder: 'Your full name', required: true },
