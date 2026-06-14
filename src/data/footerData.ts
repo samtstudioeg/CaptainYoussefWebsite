@@ -13,8 +13,8 @@ export const footerData = {
     { label: 'Terms of Service', href: '#' },
   ],
   social: [
-    { platform: 'Instagram', href: '#', icon: 'instagram' },
-    { platform: 'LinkedIn', href: '#', icon: 'linkedin' },
+    { platform: 'Instagram', href: 'https://instagram.com/yousefdx12/', icon: 'instagram' },
+    { platform: 'LinkedIn', href: 'https://www.linkedin.com/in/yousef-mohamed-362145379', icon: 'linkedin' },
     { platform: 'YouTube', href: '#', icon: 'youtube' },
     { platform: 'Twitter/X', href: '#', icon: 'twitter' },
   ],
