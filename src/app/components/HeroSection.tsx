@@ -112,7 +112,7 @@ export default function HeroSection() {
         }}
       >
         <AppImage
-          src={heroData.backgroundImage}
+          src="/assets/images/hero.jfif"
           alt="Professional athlete"
           fill
           priority
