@@ -29,7 +29,7 @@ export const aboutData = {
         'Basketball Fundamentals Course– Olympic Academy of Sports Leaders'
   ],
 
-  image: '/assets/images/about1.jfif',
+  image: '/assets/images/about1.jpg',
 
   imageAlt:
     'Mohamed Yousef coaching basketball players during a professional training session'
